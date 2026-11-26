@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Video Generator</title>
+<style>
+body{margin:0;background:#101827;color:white;font-family:Arial,sans-serif;padding:20px}
+.container{max-width:650px;margin:auto}
+h1{color:#38d9a9;text-align:center}
+p{color:#cbd5e1;text-align:center}
+textarea{width:100%;height:180px;padding:12px;box-sizing:border-box;border-radius:10px;font-size:16px}
+button{width:100%;padding:15px;background:#12b886;color:white;border:0;border-radius:10px;font-size:17px;margin-top:12px}
+#result{white-space:pre-wrap;background:#1e293b;padding:15px;margin-top:15px;border-radius:10px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🎬 AI ভিডিও জেনারেটর</h1>
+<p>আপনার গল্প লিখুন, ভিডিওর দৃশ্য তৈরি করুন</p>
+<textarea id="story" placeholder="এখানে বাংলায় আপনার গল্প লিখুন..."></textarea>
+<button onclick="makeScenes()">গল্প থেকে দৃশ্য তৈরি করুন</button>
+<div id="result"></div>
+</div>
+<script>
+function makeScenes(){
+let story=document.getElementById("story").value.trim();
+if(!story){alert("আগে একটি গল্প লিখুন");return;}
+let sentences=story.split(/[।!?]+/).filter(x=>x.trim());
+let output="🎬 আপনার ভিডিওর দৃশ্য পরিকল্পনা\n\n";
+sentences.forEach((s,i)=>{
+output+="দৃশ্য "+(i+1)+":\n"+s.trim()+"\n";
+output+="AI Prompt: Cinematic realistic video, "+s.trim()+", natural lighting, 4K, smooth camera movement.\n\n";
+});
+document.getElementById("result").textContent=output;
+}
+</script>
+</body>
+</html>
